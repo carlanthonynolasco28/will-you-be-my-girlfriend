@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Girlfriend?</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            color: #333;
+            text-align: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(232, 74, 127, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            color: #e84a7f;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .heart {
+            color: #e84a7f;
+            font-size: 32px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .reasons {
+            text-align: left;
+            margin: 30px auto;
+            max-width: 600px;
+            background: #fff5f8;
+            padding: 25px;
+            border-radius: 15px;
+        }
+        .reasons h3 {
+            color: #e84a7f;
+            margin-bottom: 20px;
+        }
+        .reasons ul {
+            padding-left: 20px;
+        }
+        .reasons li {
+            margin: 15px 0;
+            position: relative;
+            padding-left: 10px;
+        }
+        .reasons li::before {
+            content: '❤';
+            color: #e84a7f;
+            position: absolute;
+            left: -25px;
+            font-size: 14px;
+        }
+        .buttons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .btn-yes {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+        .btn-no {
+            background: linear-gradient(45deg, #f44336, #e53935);
+            color: white;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        #message {
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #e84a7f;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will You Be My Girlfriend? <span class="heart">❤</span></h1>
+        
+        <p>Dear Lalove,</p>
+        
+        <p>They say timing is everything, and I believe now is the perfect time to ask you something important.</p>
+        
+        <div class="reasons">
+            <h3>Why I Think We'd Be Great Together:</h3>
+            <ul>
+                <li>You make me smile even on my worst days</li>
+                <li>We share so many common interests and values</li>
+                <li>I love how easy it is to talk to you about anything</li>
+                <li>The way you [specific quality you admire] inspires me</li>
+                <li>Every moment with you feels special</li>
+            </ul>
+        </div>
+        
+        <p>I've enjoyed every moment we've spent together, and I'd love to make it official.</p>
+        
+        <div class="buttons">
+            <button class="btn btn-yes" onclick="sayYes()">Yes, I'd love to! 💖</button>
+            <button class="btn btn-no" onmouseover="moveButton()">No, thanks</button>
+        </div>
+        
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function sayYes() {
+            const message = document.getElementById('message');
+            message.style.display = 'block';
+            message.innerHTML = "You've made me the happiest person alive! ❤<br>*sending virtual hugs*";
+            
+            // Add confetti effect
+            for(let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+        }
+        
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = ['#e84a7f', '#4CAF50', '#FFC107', '#2196F3'][Math.floor(Math.random() * 4)];
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-10px';
+            confetti.style.borderRadius = '50%';
+            confetti.style.animation = 'fall ' + (Math.random() * 3 + 2) + 's linear';
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+        
+        function moveButton() {
+            const btn = document.querySelector('.btn-no');
+            const container = document.querySelector('.container');
+            
+            // Random position within the container
+            const maxX = container.clientWidth - btn.clientWidth - 50;
+            const maxY = container.clientHeight - btn.clientHeight - 50;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            btn.style.position = 'absolute';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
+    </script>
+    
+    <style>
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</body>
+</html>
